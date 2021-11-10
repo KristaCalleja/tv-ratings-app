@@ -2,9 +2,12 @@ const apiKey = "8aed6689a5a522ba993af5a55ca53143";
 const searchInput = document.getElementById("input");
 const submitBtn = document.querySelector("button");
 const resultsDiv = document.querySelector('.results');
-const cardLink = document.querySelector('.card');
-const logo = document.getElementById('logo');
+const posterImg = document.getElementById('poster');
+const seeMoreBtn = document.getElementById('btn');
 const footer = document.querySelector('footer');
+const seasons = document.getElementById('seasons');
+const episodes = document.getElementById('episodes');
+const rating = document.getElementById('rating');
 
 function searchShows(){
     const titleSearch = searchInput.value;
@@ -36,42 +39,42 @@ function searchShows(){
                         <p>${match.name}</p><p>${match.first_air_date.substring(0,4)}</p>
                     </div>
                     <p>${match.id}</p>
+                    <a id="btn" href="details.html">See more</a>
                 </li>`;
                 resultsDiv.insertAdjacentHTML('beforeend', show);
             });
-    });
+        });
 }
 submitBtn.addEventListener('click', function(event){
     event.preventDefault();
     resultsDiv.innerHTML = "";
     searchShows();
 });
-
+// Consume API showing details of the show
 function redirectToShowDetails(){
     const secondPromise = 
-        fetch(`https://api.themoviedb.org/3/tv/97186?api_key=${apiKey}&language=en-US`);
+        fetch(`https://api.themoviedb.org/3/tv/2316?api_key=${apiKey}&language=en-US`);
     secondPromise
         .then((response) => {
             return response.json();
         })
         .then((details) => {
             console.log(details);
-            console.log(typeof details);
+            console.log(typeof details); //Object
             console.log(details.original_name);
             console.log(details.overview);
             console.log(details.first_air_date);
-            console.log(details.number_of_seasons);
             console.log(details.number_of_episodes);
             console.log(details.last_air_date);
             console.log(details.popularity);
             console.log(details.status);
             console.log(details.vote_average);
+            posterImg.src = `https://image.tmdb.org/t/p/w780/${details.backdrop_path}`;
+            seasons.insertAdjacentText('beforebegin', `${details.number_of_seasons}`)
         }) 
     }
-cardLink.addEventListener('click', function(){
-    redirectToShowDetails();
-});
-
+window.onload = redirectToShowDetails();
+// Consume API showing details of the episodes
 function episodeDetails(){
     const thirdPromise = 
         fetch(`https://api.themoviedb.org/3/tv/2316/season/1/episode/1?api_key=${apiKey}&language=en-US`);
