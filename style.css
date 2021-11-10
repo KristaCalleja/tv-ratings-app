@@ -72,7 +72,7 @@ button{
     display: flex;
     justify-content: space-between;
 }
-.card p{
+.card p, a{
     padding: 0 .75em;
 }
 .card:hover{
@@ -84,6 +84,17 @@ button{
 .card img{
     width: 100%;
     border-radius: 11px 11px 0 0;
+}
+.card a{
+    border: 2px #00a8e1 solid;
+    padding: .25em .75em;
+    float: right;
+    margin: 0 .5em .5em 0;
+    border-radius: 9px;
+}
+.card a:hover{
+    border: 2px #eeeeee solid;
+    color: #00a8e1;
 }
 .tab{
     border: 1px red solid;
