@@ -19,7 +19,10 @@ function redirectToShowDetails(){
                         arrayOfEpisodes.push(value.episode_count); //Pick up episode count and push it in the arrayOfEpisodes
                     }
                 console.log(arrayOfEpisodes);
-                const theEpisodes = arrayOfEpisodes.values();
+                console.log(arrayOfEpisodes, "array-episodes");
+                const theEpisodes = arrayOfEpisodes.reduce(
+                    (accum, current) => (accum += current)
+                );
                 console.log(theEpisodes); //Array Iterator
                 
                 const episodeValues = arrayOfEpisodes.map((episode) => {
@@ -47,7 +50,7 @@ function redirectToShowDetails(){
                 console.log(seasonNumberArray);
                 for (let season = 1; season <= `${numberOfSeasons}`; season++){
                 console.log("First loop loaded");
-                    for (let episode = 1; episode <= `${episodeValues}`; episode++){
+                    for (let episode = 1; episode <= `${theEpisodes}`; episode++){
                         console.log("Second loop entered");
                         const promise = 
                             fetch(`https://api.themoviedb.org/3/tv/${idFromUrl}/season/${season}/episode/${episode}?api_key=${apiKey}&language=en-US`);

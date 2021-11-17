@@ -1,10 +1,21 @@
 const apiKey = "8aed6689a5a522ba993af5a55ca53143";
+const form = document.querySelector("form");
 const searchInput = document.getElementById("input");
 const submitBtn = document.querySelector("button");
 const resultsDiv = document.querySelector('.results');
 const seeMoreBtn = document.getElementById('btn');
+const mobileDiv = document.querySelector('.mobile-div');
+const videoDiv = document.querySelector('video');
+const heroDiv = document.querySelector('.hero-img');
+const main = document.querySelector('main');
+
 
 function searchShows(){
+    mobileDiv.classList.add('close');
+    videoDiv.classList.add('close');
+    heroDiv.classList.add('close');
+    main.classList.add('height');
+    form.classList.add('close');
     const titleSearch = searchInput.value;
     const dataPromise = 
         fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${titleSearch}`);
@@ -34,7 +45,6 @@ function searchShows(){
                     <p>${match.name}</p>
                     <p>${match.first_air_date.substring(0,4)}</p>
                 </div>
-                <p>${match.id}</p>
                 <a id="btn" href="/details.html?id=${match.id}">See more</a>
             </li>`;
             resultsDiv.insertAdjacentHTML('beforeend', show);

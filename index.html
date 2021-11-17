@@ -11,13 +11,24 @@
 
 <body>
     <nav>
-        <img src="images/SHOWY_Logo.png" alt="logo">
+        <a href="index.html"><img src="images/SHOWY_Logo.png" alt="logo"></a>
     </nav>
     <main>
+        <div class="mobile-div">
+            <img src="images/SHOWY_Logo.png" alt="">
+            <h2>Is it worth your time?</h2>
+            <h3>Get the low down on popularity trends as your favourite TV series progresses.</h3>
+        </div>
+        <div class="hero-img"></div>
+        <video autoplay disablepictureinpicture loop
+            poster="https://player.vimeo.com/video/525734450?title=0&portrait=0&byline=0&autoplay=1">
+            <source src="images/pexels-attila-7184588.mp4" type="video/mp4">
+            <source src="images/pexels-attila-7184588.mp4" type="video/ogg">
+        </video>
         <form action="submit">
-            <input id="input" type="text" required>
+            <input id="input" type="text" autocomplete="off" placeholder="Search TV series" required>
             <button type="submit">
-                <ion-icon name="search-outline"></ion-icon>Search
+                <ion-icon name="search-outline"></ion-icon>
             </button>
         </form>
         <div class="results"></div>

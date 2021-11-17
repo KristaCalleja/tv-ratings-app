@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700&display=swap');
 *, 
 *::before,
 *::after{
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Chivo', sans-serif;
     box-sizing: inherit;
 }
 html{
@@ -14,25 +15,63 @@ html{
 a{
     color: #ffffff;
     text-decoration: none;
+    cursor: pointer;
 }
 main{
-    padding: .5em;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+video, nav{
+    display: none;
+}
+.mobile-div{
+    position: absolute;
+    margin: 150px 0; 
+}
+.mobile-div h2, h3{
+    text-shadow: 1px 12px 6px rgba(0,0,0,2);
+}
+.mobile-div img{
+    height: 40px;
+}
+.hero-img{
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/erik-mclean-U-Vu_r6qyyU-unsplash.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: .61 / 1;
+    background-blend-mode: overlay;
+    background-color: #006B8F;
+}
+.hero-img.close{
+    display: none;
 }
 form{
+    position: absolute;
+    top: 50%;
     width: 50vw;
-    border: 1px green solid;
-    text-align: center;
-    margin: auto;
-    display: flex;
+}
+form.close{
+    display: none;
 }
 input[type="text"]{
-    min-width: 320px;
-    padding: 1em 1.5em;
+    font-size: 14px;
+    width: 100%;
+    padding: 1.5em 1.5em;
     border-radius: 50px;
     outline: none;
+    border: 2px #00a8e1 solid;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-align: center;
+    cursor: text;
+}
+input:focus{
     border: 2px #2e2e2e solid;
 }
 ion-icon{
+    margin: auto;
     font-size: 30px;
 }
 button{
@@ -41,10 +80,18 @@ button{
     background: #00a8e1;
     color: #2e2e2e;
     padding: 1em 2.5em;
-    border: none;
+    border: 2px #2e2e2e solid;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
+    width: 100%;
+}
+button{
+    background: #006B8F;
+    color: #eeeeee;
+}
+button ion-icon:hover{
+    animation: rotate 1s ;
 }
 .results, .tab-results{
     display: grid;
@@ -90,7 +137,6 @@ main h2{
     padding: 0 .75em;
 }
 .card:hover{
-    box-shadow: 2px 7px 21px -3px rgba(254,254,254,0.79);
     border-radius: 11px 11px 0 0;
     mix-blend-mode: screen;
     background-color: #2e2e2e;
@@ -114,13 +160,62 @@ main h2{
     border: 1px red solid;
 }
 footer{
+    font-size: 11px;
     text-align: center;
 }
 footer a{
     color: #00a8e1;
     text-decoration: underline;
 }
+@keyframes rotate {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
 @media (min-width: 768px){
+    nav{
+        position: absolute;
+        display: block;
+    }
+    nav img{
+        height: 60px;
+    }
+    main.height{
+        height: auto;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .mobile-div img, .hero-img{
+        display: none;
+    }
+    .mobile-div{
+        margin:0 auto;
+    }
+    .mobile-div.close{
+        display: none;
+    }
+    video.close{
+        display: none;
+    }
+    video{
+        display: block;
+        height: 100%;
+    }
+    form{
+        display: flex;
+        margin-top: 6em;
+    }
+    form input{
+        width: 100%;
+    }
+    button{
+        max-width: 160px;
+        position: absolute;
+        right: 0;
+    }
     .results, .tab-results{
         grid-template-columns: 1fr 1fr 1fr;
     }
