@@ -71,14 +71,20 @@ function redirectToShowDetails(){
                                     </div>
                                 `;
                                 console.log('Second loop finished loading');
-                                main.insertAdjacentHTML('afterbegin', createStrip);
+                                if (episode === "undefined") {
+                                    delete episode;
+                                } else {
+                                    main.insertAdjacentHTML('afterbegin', createStrip);
+                                }
+                                const createdStrip = document.querySelector('main');
+                                createdStrip.classList.add('results');
+                                const liDiv = document.querySelector('main div ul');
+                                liDiv.classList.add('card');
                             });
                         }
                     }
                 })
             };
-    
-        
 window.addEventListener('load', function(){
     redirectToShowDetails();
 });

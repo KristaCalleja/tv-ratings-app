@@ -13,9 +13,8 @@ html{
     box-sizing: border-box;
 }
 a{
-    color: #ffffff;
     text-decoration: none;
-    cursor: pointer;
+    color: #ffffff;
 }
 main{
     display: flex;
@@ -64,8 +63,6 @@ input[type="text"]{
     border: 2px #00a8e1 solid;
     font-weight: 600;
     letter-spacing: .06em;
-    text-align: center;
-    cursor: text;
 }
 input:focus{
     border: 2px #2e2e2e solid;
@@ -194,10 +191,7 @@ footer a{
     .mobile-div{
         margin:0 auto;
     }
-    .mobile-div.close{
-        display: none;
-    }
-    video.close{
+    .mobile-div.close, video.close{
         display: none;
     }
     video{

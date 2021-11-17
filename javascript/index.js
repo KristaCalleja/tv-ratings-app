@@ -9,7 +9,6 @@ const videoDiv = document.querySelector('video');
 const heroDiv = document.querySelector('.hero-img');
 const main = document.querySelector('main');
 
-
 function searchShows(){
     mobileDiv.classList.add('close');
     videoDiv.classList.add('close');
@@ -18,7 +17,7 @@ function searchShows(){
     form.classList.add('close');
     const titleSearch = searchInput.value;
     const dataPromise = 
-        fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${titleSearch}`);
+    fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${titleSearch}`);
     dataPromise
     .then((response) => {
         return response.json();
@@ -32,22 +31,26 @@ function searchShows(){
         console.log(Array.isArray(data.results[0])); //False
         console.log(typeof (data.results[0])); //Object
         console.log(data.results[0].name); //Sample of first match
-        const yearOfAiring = data.results[0].first_air_date;
-        console.log(yearOfAiring);
+        console.log(data.results.yearOfAiring);
         console.log(typeof yearOfAiring); //String
         const showMatches = data.results;
         resultsDiv.insertAdjacentHTML('beforebegin', `<h2>Your search returned ${numOfResults} results.</h2>`)
         showMatches.forEach((match) => {
             const show = `
-            <li class="card"> 
-                <img src="https://image.tmdb.org/t/p/w780/${match.backdrop_path}" alt="">
-                <div>
-                    <p>${match.name}</p>
-                    <p>${match.first_air_date.substring(0,4)}</p>
-                </div>
-                <a id="btn" href="/details.html?id=${match.id}">See more</a>
-            </li>`;
+                <li class="card"> 
+                    <img src="https://image.tmdb.org/t/p/w780/${match.backdrop_path}" alt="">
+                    <div>
+                        <p>${match.name}</p>
+                        <p>${match.first_air_date.substring(0,4)}</p>
+                    </div>
+                    <a id="btn" href="/details.html?id=${match.id}">See more</a>
+                </li>`;
             resultsDiv.insertAdjacentHTML('beforeend', show);
+            const showImg = document.querySelector('.card img');
+                if (showImg.src === "https://image.tmdb.org/t/p/w780/null"){
+                    console.log('it worked');
+                    showImg.src = "images/Image_not_available.png";
+                }
         });
     });
 }
