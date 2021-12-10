@@ -34,11 +34,15 @@ function searchShows(){
         console.log(data.results.yearOfAiring);
         console.log(typeof yearOfAiring); //String
         const showMatches = data.results;
-        resultsDiv.insertAdjacentHTML('beforebegin', `<h2>Your search returned ${numOfResults} results.</h2>`)
+        // resultsDiv.insertAdjacentHTML('beforebegin', `<h2>Your search returned ${numOfResults} results.</h2>`)
         showMatches.forEach((match) => {
+            const image = match.backdrop_path
+                ? `https://image.tmdb.org/t/p/w780/${match.backdrop_path}`
+                : match.poster_path ? `https://image.tmdb.org/t/p/w780/${match.poster_path}`
+                : 'images/Image_not_available.png'
             const show = `
                 <li class="card"> 
-                    <img src="https://image.tmdb.org/t/p/w780/${match.backdrop_path}" alt="">
+                    <img src="${image}" alt="">
                     <div>
                         <p>${match.name}</p>
                         <p>${match.first_air_date.substring(0,4)}</p>
@@ -46,11 +50,6 @@ function searchShows(){
                     <a id="btn" href="/details.html?id=${match.id}">See more</a>
                 </li>`;
             resultsDiv.insertAdjacentHTML('beforeend', show);
-            const showImg = document.querySelector('.card img');
-                if (showImg.src === "https://image.tmdb.org/t/p/w780/null"){
-                    console.log('it worked');
-                    showImg.src = "images/Image_not_available.png";
-                }
         });
     });
 }
