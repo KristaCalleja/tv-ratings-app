@@ -91,6 +91,7 @@ button{
     display: none;
 }
 .results, .tab-results{
+    margin-top: 70px;
     display: grid;
     grid-template-columns: 1fr;
     gap: .5em
@@ -197,17 +198,14 @@ footer a{
     .mobile-div{
         margin:0 auto;
     }
-    
     video{
         display: block;
         height: 100%;
     }
     form{
         display: flex;
+        width: 60%;
         margin-top: 6em;
-    }
-    form input{
-        width: 100%;
     }
     button{
         max-width: 160px;

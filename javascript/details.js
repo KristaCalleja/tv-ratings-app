@@ -71,7 +71,7 @@ function redirectToShowDetails(){
                                     </div>
                                 `;
                                 console.log('Second loop finished loading');
-                                if (episode === "undefined") {
+                                if (episode.name === "undefined") {
                                     delete episode;
                                 } else {
                                     main.insertAdjacentHTML('afterbegin', createStrip);
